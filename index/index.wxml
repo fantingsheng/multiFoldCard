@@ -1,0 +1,71 @@
+<!--pages/ecard/index.wxml-->
+<view class="page">
+	<view class="header" style="height: {{cardList.length > 1?358:298}}rpx;">
+    <view class="avatar"><image src=""></image></view>
+    <view class="_title">我的通行卡</view>
+		<view class="_intro">对准电梯扫码口扫描二维码上楼</view>
+		<view class="_count" wx:if="{{cardList.length > 1}}">你共有{{cardList.length}}张通行卡</view>
+	</view>
+  <view style="height:{{cardList.length > 1?358:298}}rpx;"></view>
+
+  <view class="placeholder" style="position:relative;height: {{wrapHeight}}rpx;" animation="{{headerAnimation}}">
+    <view class="cardWrap {{cardOpen?'open':''}}" animation="{{cardAnimation}}" catchtouchmove="{{cardOpen?'banScroll':''}}">
+      <view class="card card{{index}} {{currentCard === index ? 'current': ''}}" bindtap="openCard" data-index="{{index}}" wx:for="{{cardList}}" wx:key="" style="top:{{topData[index]}}rpx">
+        <view class="w46">
+          <view class="cmpinfo _flex _flex_item_center _flex_space_between">
+            <view class="_lft _flex _flex_item_center">
+              <view class="logo">
+                <image src="{{item.logo_url}}" wx:if="{{item.logo_url}}"></image>
+                <text wx:else>Logo</text>
+              </view>
+              <view class="_info">
+                <view class="name">{{item.name}}<text>{{item.type==0?'企业':'公寓'}}</text></view>
+                <view class="address _overText">{{item.building_name}}</view>
+              </view>
+            </view>
+            <view class="_rgt"><text class="iconfont icon-jiantou"></text></view>
+          </view>
+        </view>
+        <view class="qrcode">
+          <view class="scan-guide _flex _flex_item_center">
+            <text class="qf">?</text>
+            <text>如何扫码</text>
+          </view>
+          <view class="code">{{floorIndex}}</view>
+          <view class="warn-info">
+            <text>该码实时更新，请勿泄露。</text>
+            <text class="refreshBtn" catchtap="refreshQrcode"><text class="iconfont icon-shuaxin"></text>刷新</text>
+          </view>
+        </view>
+        <view class="chooseFloor">
+          <view class="tit">选择楼层</view>
+          <view class="floor-scroll">
+            <scroll-view scroll-x style="white-space:nowrap;width: 100%;margin-top: 40rpx;" bindscroll="" class="scrollView">
+              <view class="_item {{floorIndex == index ? 'cur' : ''}}" catchtap="selectFloor" wx:for="{{floorRoom}}" wx:key="" data-fm="{{index}}">
+                <view class="_flex">
+                  <view class="floor">{{item.floor}}</view>
+                  <view class="room">{{item.room}}</view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <navigator url='' hover-class='none'>
+    <view class="add-btn"><text class="iconfont icon-tianjia"></text>添加通行卡</view>
+  </navigator>
+  <view class="page_ft">
+    <view class="_sec">
+      <view class="know-list-title">说明文字</view>
+      <view class="know-list _flex "><text class="_num">1.</text> <text>这里是第一条说明文字</text></view>
+      <view class="know-list _flex "><text class="_num">2.</text> <text>这里是第二条说明文字这里是第二条说明文字</text></view>
+      <view class="know-list _flex"><text class="_num">3.</text> <text>这里是第三条说明文字这里是第三条说明文字这里是第三条说明文字</text></view>
+    </view>
+    <view class="_ft_logo">
+      <image style="width:224rpx" mode='widthFix' src="https://slightech-marvin-wechat.oss-cn-hangzhou.aliyuncs.com/marvin-mini-program/foot_mynt_logo@2x.png"></image>
+    </view>
+  </view>
+ 
+</view>
