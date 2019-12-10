@@ -207,6 +207,10 @@ page {
   font-size: 100rpx;
   line-height: 360rpx;
 }
+.code image {
+  width: 360rpx;
+  height: 360rpx; 
+}
 .warn-info {
   font-size: 26rpx;
   color: rgba(136, 145, 169, .6)
@@ -308,7 +312,7 @@ page {
 }
 
 ._ft_logo {
-  padding: 120rpx 0 40rpx;
+  padding: 80rpx 0 40rpx;
   text-align: center;
 }
 
